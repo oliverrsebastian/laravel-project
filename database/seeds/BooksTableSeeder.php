@@ -19,8 +19,7 @@ class BooksTableSeeder extends Seeder
         	'price' => 150000,
         	'description' => 'Hansel and Gretel" is a well-known fairy tale of German origin, recorded by the Brothers Grimm and published in 1812.',
         	'stock' => 3,
-        	'image' => 'hansel_and_gretel.jpg',
-        	'rating' => 4.5
+        	'image' => 'hansel_and_gretel.jpg'
         ]);
 
         factory(Book::class)->create([
@@ -30,8 +29,7 @@ class BooksTableSeeder extends Seeder
         	'price' => 250000,
         	'description' => 'Kane and Abel is a 1979 novel by British author Jeffrey Archer. Released in the United Kingdom in 1979 and in the United Statesinternational success.',
         	'stock' => 1,
-        	'image' => 'kane_and_abel.jpg',
-        	'rating' => 4.39
+        	'image' => 'kane_and_abel.jpg'
         ]);
 
         factory(Book::class)->create([
@@ -41,53 +39,48 @@ class BooksTableSeeder extends Seeder
         	'price' => 37500,
         	'description' => 'The little boat with a big past: the fight to save one of the most important artefacts of Australian military history. ',
         	'stock' => 9,
-        	'image' => 'the_mighty_krait.jpg',
-        	'rating' => 3.24
+        	'image' => 'the_mighty_krait.jpg'
         ]);
 
         factory(Book::class)->create([
             "name" => "Fajar Matahari",
-            "genre" => "Fiction",
+            "genre" => "fiction",
             "author" => "Darren C",
             "price" => 100000,
             "description" => "Menunggu fajar matahri",
             "stock" => 5,
-            "image" => "null",
-            "rating" => 3.89
+            "image" => "null"
         ]);
 
 
         factory(Book::class)->create([
             "name" => "Biji Bunga Matahari",
-            "genre" => "Life",
+            "genre" => "life",
             "author" => "Jefri R",
             "price" => 200000,
             "stock" => 2,
             "description" => "Mendalami bunga matahari",
-            "image" => "null",
-            "rating" => 2.73
+            "image" => "null"
         ]);
 
         factory(Book::class)->create([
             "name" => "Wulan",
-            "genre" => "Cartoon",
+            "genre" => "cartoon",
             "author" => "Darez A",
             "price" => 50000,
             "stock" => 10,
             "description" => "Seorang wanita menyamar sebagai pria",
-            "image" => "null",
-            "rating" => 1.67
+            "image" => "null"
         ]);
 
         factory(Book::class)->create([
             "name" => "Ghostbuster Volume 2",
-            "genre" => "Mystery",
+            "genre" => "mystery",
             "author" => "Jefri R",
             "price" => 20000,
             "stock" => 3,
             "description" => "Menangkap hantu yang kesepian",
-            "image" => "null",
-            "rating" => 2.67
+            "image" => "null"
         ]);
         
     }

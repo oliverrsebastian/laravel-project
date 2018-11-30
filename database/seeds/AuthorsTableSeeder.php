@@ -14,19 +14,19 @@ class AuthorsTableSeeder extends Seeder
     {
         factory(Author::class)->create([
         	'name' => 'Engelbert Humperdinck',
-        	'dob' => 'May 2, 1936',
+        	'dob' => '2/6/1936',
         	'country' => 'America'
         ]);
 
         factory(Author::class)->create([
         	'name' => 'Jeffrey Archer',
-        	'dob' => 'April 15, 1940',
+        	'dob' => '15/4/1940',
         	'country' => 'England'
         ]);
 
         factory(Author::class)->create([
         	'name' => 'Ian McPhedran',
-        	'dob' => 'June 3, 1957',
+        	'dob' => '3/6/1957',
         	'country' => 'Australia'
         ]);
 

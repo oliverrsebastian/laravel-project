@@ -12,7 +12,6 @@ $factory->define(Book::class, function (Faker $faker) {
         'description' => $faker->sentence,
         'stock' => $faker->numberBetween(0, 10),
         'image' => $faker->sentence,
-        'rating' => $faker->numberBetween(0, 5),
         'remember_token' => str_random(10),
     ];
 });
