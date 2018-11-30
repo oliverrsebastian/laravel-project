@@ -48,3 +48,7 @@ Route::put('/authors/edit/{id}', 'AuthorController@update');
 Route::delete('/authors/delete/{id}', 'AuthorController@delete');
 /*-------------------------------------------*/
 
+/*--------------Book Rating Actions------------*/
+Route::post('/rating/{bookId}', 'BookRatingController@getRating');
+Route::post('/rating/insert', 'BookRatingController@store');
+

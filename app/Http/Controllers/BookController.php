@@ -74,7 +74,14 @@ class BookController extends Controller
         $book->description = $request->description;
         $book->stock = $request->stock;
         $book->image = $request->image;
+        if ($book->rating < 0 | $book->rating == null)
+            $book->rating = 0.0;
         $book->save();
+    }
+
+    public function addRating($id)
+    {
+
     }
 
     public function delete($id)
