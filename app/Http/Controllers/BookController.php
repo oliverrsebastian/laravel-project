@@ -2,36 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use App\Book;
+use Gate;
+use Validator;
+use Storage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Book;
+use App\Page;
 
 class BookController extends Controller
 {
-    public function index()
-    {
-        $books = Book::all()->paginate(8);
-        return view('books', compact('books'));
+
+		public function __construct(){
+			// $this->middleware();
+		}
+
+    public function index(){
+    	$page_key = 'page_home'; 
+    	$page = Page::where('page_key', $page_key)->get()->first();
+    	if(Gate::denies('show-page', $page)){
+        // abort(403, 'Sorry, not sorry.');
+        if(1 != $page->guest) return redirect()->route('login');
+    	}
+      $books = Book::paginate(8);
+    	return view('book.home', compact('books'));
     }
 
-    public function create()
+    public function insert()
     {
-        return view('createBook');
+        return view('book.insert');
     }
 
     public function show($id)
     {
         $book = Book::find($id);
-        return view('book', compact('book'));
+        return view('book.home-detail', compact('book'));
     }
 
     public function edit($id)
     {
-        $book = Book::find($id);
-        return view('editBook', 'book');
+        $book = Book::findOrFail($id);
+        return view('book.edit')->with('book', $book);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $rules = $this->getValidationRule();
 
@@ -40,9 +53,10 @@ class BookController extends Controller
         if ($validator->fails())
             return redirect()->back()->withErrors($validator->errors());
 
-        $book = Book::find($id);
+        $book_id = $request->id;
+        $book = Book::find($book_id);
         $this->saveBookData($book, $request);
-        return view('books')->with('success', 'Book has been edited');
+				return redirect('/')->with('success', 'Book has been updated');
     }
 
     /**
@@ -54,10 +68,10 @@ class BookController extends Controller
             'name' => 'min:3 | required',
             'genre' => 'required',
             'author' => 'required',
-            'price' => 'min:5001 | required | integer',
+            'price' => 'integer | min:5000 | required',
             'description' => 'between:20,200 | required',
             'stock' => 'min:1 | required | integer',
-            'image' => 'mimes:jpeg, jpg, png  | required'
+            'image' => 'mimes:jpeg,jpg,png | required'
         ];
         return $rules;
     }
@@ -73,15 +87,11 @@ class BookController extends Controller
         $book->price = $request->price;
         $book->description = $request->description;
         $book->stock = $request->stock;
-        $book->image = $request->image;
-        if ($book->rating < 0 | $book->rating == null)
-            $book->rating = 0.0;
+				$filename = $request->file('image')->getClientOriginalName();
+				Storage::putFileAs('public', $request->file('image'), $filename);
+        $book->image = $filename;
+        $book->rating = 0;
         $book->save();
-    }
-
-    public function addRating($id)
-    {
-
     }
 
     public function delete($id)
@@ -103,6 +113,8 @@ class BookController extends Controller
 
         $book = new Book();
         $this->saveBookData($book, $request);
-        return view('books')->with('success', 'Book has been added');
+        return redirect('/')->with('success', 'Book has been added');
+        
     }
+
 }

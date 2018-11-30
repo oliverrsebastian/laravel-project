@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -26,4 +26,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function hasAccess($page){
+        // dd($this->role);
+        // $user_role = User::roleToString($this->role);
+        switch($this->role){
+            case 0:
+                return $this->role == $page->member;
+            case 1:
+                return $this->role == $page->admin;
+            default:
+                dd('exit');
+                return 1 == $page->guest;
+        }
+    }
 }

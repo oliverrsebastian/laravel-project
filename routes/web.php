@@ -11,17 +11,37 @@
 |
 */
 
+/*-------------Login----------------*/
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+/*---------------------------------------*/
+
+/*-------------Login Action----------------*/
+Route::post('/login', 'Auth\LoginController@login')->name('login.verify');
+/*---------------------------------------*/
+
+/*-------------Register----------------*/
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+/*---------------------------------------*/
+
+/*-------------Register Action----------------*/
+Route::post('/register', 'Auth\RegisterController@register')->name('register.verify');
+/*---------------------------------------*/
+
+/*-------------Cart----------------*/
+Route::get('/cart', 'CartController@index')->name('cart');
+/*---------------------------------------*/
+
 /*-------------Book Forms----------------*/
-Route::get('/books', 'BookController@index');
-Route::get('books/{id}', 'BookController@show');
-Route::get('/books/insert', 'BookController@create');
-Route::get('/books/edit/{id}', 'BookController@edit');
+Route::get('/', 'BookController@index')->name('books.all');
+Route::get('/books/insert', 'BookController@insert')->name('books.insert');
+Route::get('/books/edit/{id}', 'BookController@edit')->name('books.edit');
+Route::get('/books/{id}', 'BookController@show')->name('books.detail');
 /*---------------------------------------*/
 
 /*-------------Book Actions----------------*/
-Route::post('/books/insert', 'BookController@store');
-Route::put('/books/edit/{id}', 'BookController@update');
-Route::delete('/books/delete/{id}', 'BookController@delete');
+Route::post('/books/insert', 'BookController@store')->name('books.insert.verify');
+Route::post('/books/edit', 'BookController@update')->name('books.edit.verify');
+Route::delete('/books/delete/{id}', 'BookController@delete')->name('books.delete.verify');
 /*-----------------------------------------*/
 
 /*-------------Genre Forms----------------*/
@@ -47,8 +67,4 @@ Route::post('/authors/insert', 'AuthorController@store');
 Route::put('/authors/edit/{id}', 'AuthorController@update');
 Route::delete('/authors/delete/{id}', 'AuthorController@delete');
 /*-------------------------------------------*/
-
-/*--------------Book Rating Actions------------*/
-Route::post('/rating/{bookId}', 'BookRatingController@getRating');
-Route::post('/rating/insert', 'BookRatingController@store');
 

@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateBookTable extends Migration
+class CreateBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,9 +20,9 @@ class CreateBookTable extends Migration
             $table->foreign('genre')->references('name')->on('genres');
             $table->string('author');
             $table->foreign('author')->references('name')->on('authors');
-            $table->string('price');
+            $table->integer('price');
             $table->string('description');
-            $table->string('stock');
+            $table->integer('stock');
             $table->string('image');
             $table->rememberToken();
             $table->timestamps();
