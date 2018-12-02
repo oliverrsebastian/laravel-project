@@ -11,7 +11,7 @@
 |
 */
 
-/*-------------Login----------------*/
+/*-------------Login Form----------------*/
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 /*---------------------------------------*/
 
@@ -19,7 +19,7 @@ Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name('login.verify');
 /*---------------------------------------*/
 
-/*-------------Register----------------*/
+/*-------------Register Form----------------*/
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 /*---------------------------------------*/
 
@@ -45,26 +45,26 @@ Route::delete('/books/delete/{id}', 'BookController@delete')->name('books.delete
 /*-----------------------------------------*/
 
 /*-------------Genre Forms----------------*/
-Route::get('/genres', 'GenreController@index');
-Route::get('/genres/insert', 'GenreController@insert');
-Route::get('/genres/edit/{id}', 'GenreController@edit');
+Route::get('/genres', 'GenreController@index')->name('genres.all');
+Route::get('/genres/insert', 'GenreController@insert')->name('genres.insert');
+Route::get('/genres/edit/{id}', 'GenreController@edit')->name('genres.edit');
 /*----------------------------------------*/
 
 /*-------------Genre Actions----------------*/
-Route::post('/genres/insert', 'GenreController@store');
-Route::put('/genres/edit/{id}', 'GenreController@update');
-Route::delete('/genres/delete/{id}', 'GenreController@delete');
+Route::post('/genres/insert', 'GenreController@store')->name('genres.insert.verify');
+Route::post('/genres/edit/{id}', 'GenreController@update')->name('genres.edit.verify');
+Route::delete('/genres/delete/{id}', 'GenreController@delete')->name('genres.delete.verify');
 /*------------------------------------------*/
 
 /*-------------Author Forms----------------*/
-Route::get('/authors', 'AuthorController@index');
-Route::get('/authors/insert', 'AuthorController@insert');
-Route::get('/authors/edit/{id}', 'AuthorController@edit');
+Route::get('/authors', 'AuthorController@index')->name('authors.insert');
+Route::get('/authors/insert', 'AuthorController@insert')->name('authors.edit');
+Route::get('/authors/edit/{id}', 'AuthorController@edit')->name('authors.delete');
 /*-----------------------------------------*/
 
 /*-------------Author Actions----------------*/
-Route::post('/authors/insert', 'AuthorController@store');
-Route::put('/authors/edit/{id}', 'AuthorController@update');
-Route::delete('/authors/delete/{id}', 'AuthorController@delete');
+Route::post('/authors/insert', 'AuthorController@store')->name('authors.insert.verify');
+Route::post('/authors/edit/{id}', 'AuthorController@update')->name('authors.edit.verify');
+Route::delete('/authors/delete/{id}', 'AuthorController@delete')->name('authors.delete.verify');
 /*-------------------------------------------*/
 

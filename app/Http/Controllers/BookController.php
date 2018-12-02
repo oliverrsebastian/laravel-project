@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Gate;
-use Validator;
-use Storage;
-use Illuminate\Http\Request;
+use App\Author;
 use App\Book;
+use App\Genre;
 use App\Page;
+use App\Rules\NumberMinimumRule;
+use Gate;
+use Illuminate\Http\Request;
+use Storage;
+use Validator;
 
 class BookController extends Controller
 {
@@ -29,7 +32,9 @@ class BookController extends Controller
 
     public function insert()
     {
-        return view('book.insert');
+        $genres = Genre::all();
+        $authors = Author::all();
+        return view('book.insert')->with('genres', $genres)->with('authors', $authors);
     }
 
     public function show($id)
@@ -68,10 +73,12 @@ class BookController extends Controller
             'name' => 'min:3 | required',
             'genre' => 'required',
             'author' => 'required',
-            'price' => 'integer | min:5000 | required',
+            'price' => 'integer | required',
+            'price' => new NumberMinimumRule(5000),
             'description' => 'between:20,200 | required',
-            'stock' => 'min:1 | required | integer',
-            'image' => 'mimes:jpeg,jpg,png | required'
+            'stock' => 'required | integer',
+            'stock' => new NumberMinimumRule(0),
+            'image' => 'mimes:jpeg,jpg,png | required',
         ];
         return $rules;
     }
@@ -90,7 +97,6 @@ class BookController extends Controller
 				$filename = $request->file('image')->getClientOriginalName();
 				Storage::putFileAs('public', $request->file('image'), $filename);
         $book->image = $filename;
-        $book->rating = 0;
         $book->save();
     }
 
