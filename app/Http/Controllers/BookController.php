@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Gate;
 use Validator;
 use Storage;
@@ -21,7 +22,7 @@ class BookController extends Controller
     	$page = Page::where('page_key', $page_key)->get()->first();
     	if(Gate::denies('show-page', $page)){
         // abort(403, 'Sorry, not sorry.');
-        if(1 != $page->guest) return redirect()->route('login');
+        if(Auth::check() && Auth::user()->role != $page->guest) return redirect()->route('login');
     	}
       $books = Book::paginate(8);
     	return view('book.home', compact('books'));
