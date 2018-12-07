@@ -9,10 +9,18 @@
 	<input type="text" name="name">
 
 	<label for="">Genre</label>
-	<input type="text" name="genre">
+	<select name="genre">
+		@foreach($genres as $genre)
+			<option value="{{$genre->name}}">{{$genre->name}}</option>
+		@endforeach
+	</select>
 
 	<label for="">Author</label>
-	<input type="text" name="author">
+	<select name="author">
+		@foreach($authors as $author)
+			<option value="{{$author->name}}">{{$author->name}}</option>
+		@endforeach
+	</select>
 
 	<label for="">Price</label>
 	<input type="text" name="price">

@@ -10,19 +10,19 @@ class GenreController extends Controller
 {
     public function index()
     {
-        $genres = Genre::all()->paginate(8);
-        return view('genres', compact('genres'));
+        $genres = Genre::paginate(8);
+        return view('genre.home', compact('genres'));
     }
 
     public function insert()
     {
-        return view('insertGenre');
+        return view('genre.insert');
     }
 
     public function edit($id)
     {
         $genre = Genre::find($id);
-        return view('editGenre', compact('genre'));
+        return view('genre.edit', compact('genre'));
     }
 
     public function update(Request $request, $id)
@@ -37,7 +37,7 @@ class GenreController extends Controller
         $genre = Genre::find($id);
         $this->saveGenre($genre, $request);
 
-        return view('genres')->with('success', 'Genre has been edited');
+        return view('genre.home')->with('success', 'Genre has been edited');
     }
 
     /**
@@ -79,6 +79,6 @@ class GenreController extends Controller
         $genre = new Genre();
         $this->saveGenre($genre, $request);
 
-        return view('genres')->with('success', 'Genre has been added');
+        return view('genre.home')->with('success', 'Genre has been added');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Genre;
+use Illuminate\Database\Seeder;
 
 class GenresTableSeeder extends Seeder
 {
@@ -13,39 +13,39 @@ class GenresTableSeeder extends Seeder
     public function run()
     {
         factory(Genre::class)->create([
-        	'name' => 'fiction'
+            'name' => 'Fiction'
         ]);
 
         factory(Genre::class)->create([
-        	'name' => 'history'
+            'name' => 'History'
         ]);
 
         factory(Genre::class)->create([
-        	'name' => 'fantasy'
+            'name' => 'Fantasy'
         ]);
 
         factory(Genre::class)->create([
-        	'name' => 'mystery'
+            'name' => 'Mystery'
         ]);
 
         factory(Genre::class)->create([
-        	'name' => 'novel'
+            'name' => 'Novel'
         ]);
 
         factory(Genre::class)->create([
-        	'name' => 'drama'
+            'name' => 'Drama'
         ]);
 
         factory(Genre::class)->create([
-        	'name' => 'life'
+            'name' => 'Life'
         ]);
         
         factory(Genre::class)->create([
-        	'name' => 'cartoon'
+            'name' => 'Cartoon'
         ]);
 
         factory(Genre::class)->create([
-        	'name' => 'comedy'
+            'name' => 'Comedy'
         ]);
     }
 }
