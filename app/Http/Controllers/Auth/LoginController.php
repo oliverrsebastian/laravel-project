@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -54,5 +54,10 @@ class LoginController extends Controller
 
         }
         return redirect()->back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function logout(){
+      Auth::logout();
+      return redirect(Route('books.all'));
     }
 }

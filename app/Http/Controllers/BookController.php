@@ -25,9 +25,9 @@ class BookController extends Controller
     	$page = Page::where('page_key', $page_key)->get()->first();
     	if(Gate::denies('show-page', $page)){
         // abort(403, 'Sorry, not sorry.');
-        if(Auth::check() && Auth::user()->role != $page->guest) return redirect()->route('login');
+        if(1 != $page->guest) return redirect()->route('login');
     	}
-      $books = Book::paginate(8);
+      $books = Book::paginate(4);
     	return view('book.home', compact('books'));
     }
 

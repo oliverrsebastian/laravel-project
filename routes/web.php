@@ -19,6 +19,10 @@ Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name('login.verify');
 /*---------------------------------------*/
 
+/*-------------Logout Form----------------*/
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+/*---------------------------------------*/
+
 /*-------------Register Form----------------*/
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 /*---------------------------------------*/

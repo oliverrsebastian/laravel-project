@@ -36,7 +36,6 @@ class User extends Authenticatable
             case 1:
                 return $this->role == $page->admin;
             default:
-                dd('exit');
                 return 1 == $page->guest;
         }
     }

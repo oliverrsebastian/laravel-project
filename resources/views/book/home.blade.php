@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <a href="{{ route('books.insert') }}">Create Book</a>
+  {{-- <a href="{{ route('books.insert') }}">Create Book</a> --}}
 
   @if(isset($success))
   <div>{{ $success }}</div>

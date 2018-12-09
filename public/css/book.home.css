@@ -22,18 +22,40 @@
     position: absolute;
     left: 6px;
   }
-	td:nth-of-type(1):before { content: "Name"; }
-	td:nth-of-type(2):before { content: "Genre"; }
-	td:nth-of-type(3):before { content: "Author"; }
-	td:nth-of-type(4):before { content: "Price"; }
-	td:nth-of-type(5):before { content: "Description"; }
-	td:nth-of-type(6):before { content: "Stocks"; }
-	td:nth-of-type(7):before { content: "Image"; }
-	td:nth-of-type(8):before { content: "Rating"; }
-	td:nth-of-type(9):before { content: "Show"; }
-	td:nth-of-type(10):before { content: "Edit"; }
+	td:nth-of-type(1):before { content: "Name"; font-weight: bold; }
+	td:nth-of-type(2):before { content: "Genre"; font-weight: bold; }
+	td:nth-of-type(3):before { content: "Author";font-weight: bold;  }
+	td:nth-of-type(4):before { content: "Price"; font-weight: bold; }
+	td:nth-of-type(5):before { content: "Description"; font-weight: bold; }
+	td:nth-of-type(6):before { content: "Stocks"; font-weight: bold; }
+	td:nth-of-type(7):before { content: "Image"; font-weight: bold; }
+	td:nth-of-type(8):before { content: "Rating"; font-weight: bold; }
+	td:nth-of-type(9):before { content: "Show"; font-weight: bold; }
+	td:nth-of-type(10):before{ content: "Edit"; font-weight: bold; }
 }
-@media(min-width: 1200px) {td, th {
-    padding: 0.6vw 0.8vw;
+@media(min-width: 769px) {
+  table {
+    width: 1170px;
   }
+  .container {
+    padding: 0;
+  }
+  td, th {
+    padding: 0.6vw 0.6vh;
+  }
+  tbody > tr:nth-child(odd) {
+    background-color: #eee;
+  }
+  
+	td:nth-of-type(1) { width: 7%; }
+	td:nth-of-type(2) { width: 7%; }
+	td:nth-of-type(3) { width: 7%; }
+	td:nth-of-type(4) { width: 7%; }
+	td:nth-of-type(5) { width: 25%; }
+	td:nth-of-type(6) { width: 7%; }
+	td:nth-of-type(7) { width: 19% }
+	td:nth-of-type(8) { width: 7%; }
+	td:nth-of-type(9) { width: 7%; }
+	td:nth-of-type(10){ width: 7%; }
+
 }
