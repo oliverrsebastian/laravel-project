@@ -20,3 +20,14 @@
         <td>{{ $book->rating }}</td>
     </tr>
 </table>
+
+<form action="" method="GET">
+    <input type="hidden" value="{{$book->id}}">
+    <div>
+        <label for="qty">Qty : </label>
+        <input type="number" name="qty" id="qty">
+    </div>
+    <div>
+        <button type="submit">Add to Cart</button>
+    </div>
+</form>
