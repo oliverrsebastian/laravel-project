@@ -8,18 +8,8 @@ use Illuminate\Support\Facades\Validator;
 
 class BookRatingController extends Controller
 {
-    public function getRating($bookId)
-    {
-        $listOfRatings = BookRating::where('book_id', $bookId);
-        $ratingCount = $listOfRatings->count();
-        $totalRating = 0;
-        foreach ($listOfRatings as $rating) {
-            $totalRating += $rating->rating;
-        }
-        $ratings = [
-            $ratingCount, $totalRating
-        ];
-        return $ratings;
+    public function __construct(){
+        new BookRatingController();
     }
 
     public function store(Request $request)

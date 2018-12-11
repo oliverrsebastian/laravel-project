@@ -1,18 +1,23 @@
-<form method="POST" enctype="multipart/form-data" action="{{ route('authors.insert.verify') }}">
-    {{ @csrf_field() }}
-    @foreach($errors->all() as $error)
-        <div>{{ $error }}</div>
-    @endforeach
-    <input type="hidden" name="id">
+@extends('layout.app')
 
-    <label for="">Author Name</label>
-    <input type="text" name="name">
+@section('css')
+@endsection
 
-    <label for="">Date Of Birth</label>
-    <input type="date" name="dob">
+@section('content')
+	<form method="POST" enctype="multipart/form-data" action="{{ route('authors.insert.verify') }}">
+	    {{ @csrf_field() }}
+	    @foreach($errors->all() as $error)
+	        <div>{{ $error }}</div>
+	    @endforeach
+	    <input type="hidden" name="id">
 
-    <label for="">Author Country</label>
-    <input type="text" name="country">
+	    <div class="form-group">
+		    <label for="">Author Name</label>
+		    <input type="text" name="name" class="form-control">
+		  </div>
 
-    <input type="submit" value="Insert Author">
-</form>
+	    <div class="form-group">
+	    	<input type="submit" value="Insert Author" class="btn btn-primary">
+		  </div>
+	</form>
+@endsection

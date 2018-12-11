@@ -1,18 +1,24 @@
-<form method="POST" enctype="multipart/form-data" action="">
-    {{ @csrf_field() }}
-    @foreach($errors->all() as $error)
-        <div>{{ $error }}</div>
-    @endforeach
-    <input type="hidden" name="id" value="{{ $author->id }}">
+@extends('layout.app')
 
-    <label for="">Author Name</label>
-    <input type="text" name="name" value="{{ $author->name }}">
+@section('css')
 
-    <label for="">Date Of Birth</label>
-    <input type="date" name="dob" value="{{ $author->dob }}">
+@endsection
 
-    <label for="">Author Country</label>
-    <input type="text" name="country" value="{{ $author->country }}">
+@section('content')
+	<form method="POST" enctype="multipart/form-data" action="{{ route('authors.edit.verify') }}">
+	    {{ @csrf_field() }}
+	    @foreach($errors->all() as $error)
+	        <div>{{ $error }}</div>
+	    @endforeach
 
-    <input type="submit" value="Update Author">
-</form>
+			<h2>Edit Genre - {{ $author->name }}</h2>
+	    <input type="hidden" name="id" value="{{ $author->id }}">
+
+    	<div class="form-group">
+		    <label for="">Author Name</label>
+		    <input type="text" name="name" value="{{ $author->name }}" class="form-control">
+	    </div>
+
+    	<input type="submit" value="Update Author" class="btn btn-primary">
+	</form>
+@endsection

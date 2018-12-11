@@ -2,32 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Gate;
+use Validator;
+use Storage;
+use Illuminate\Http\Request;
 use App\Author;
 use App\Book;
+use App\BookRating;
 use App\Genre;
 use App\Page;
 use App\Rules\NumberMinimumRule;
-use Gate;
-use Illuminate\Http\Request;
-use Storage;
-use Validator;
 
 class BookController extends Controller
 {
 
-		public function __construct(){
-			// $this->middleware();
-		}
+	public function __construct(){
+		// $this->middleware();
+	}
 
     public function index(){
-    	$page_key = 'page_home'; 
-    	$page = Page::where('page_key', $page_key)->get()->first();
-    	if(Gate::denies('show-page', $page)){
-        // abort(403, 'Sorry, not sorry.');
-        if(1 != $page->guest) return redirect()->route('login');
-    	}
-      $books = Book::paginate(8);
-    	return view('book.home', compact('books'));
+        $books = Book::paginate(8);
+        return view('book.home', compact('books'));
     }
 
     public function insert()
@@ -39,8 +35,19 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $book = Book::find($id);
-        return view('book.home-detail', compact('book'));
+        $get_book = Book::find($id);
+        $bookRating = new BookRating();
+        $book = [
+            'name' => $get_book->name,
+            'genre' => $get_book->genre,
+            'author' => $get_book->author,
+            'price' => $get_book->price,
+            'description' => $get_book->description,
+            'stock' => $get_book->stock,
+            'image' => $get_book->image,
+            'rating' => $bookRating->getRating($id)[1]
+        ];
+        return view('book.detail')->with('book', $book);
     }
 
     public function edit($id)
@@ -61,7 +68,7 @@ class BookController extends Controller
         $book_id = $request->id;
         $book = Book::find($book_id);
         $this->saveBookData($book, $request);
-				return redirect('/')->with('success', 'Book has been updated');
+		return redirect('/')->with('success', 'Book has been updated');
     }
 
     /**

@@ -11,10 +11,12 @@ class CartController extends Controller
     public function index(){
     	$page_key = 'page_cart'; 
     	$page = Page::where('page_key', $page_key)->get()->first();
-    	if(Gate::denies('show-page', $page)){
+
+    	// if($user = Gate::denies('show-page', $page)){
     		// abort(403, 'Sorry, not sorry.');
-    		return redirect()->route('login');
-    	}
-    	return view('cart.mycart');
+    	// }
+  		return view('cart.mycart');
+
+      // if(!$user) return redirect()->route('books.all');
     }
 }

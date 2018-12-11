@@ -1,4 +1,7 @@
-<form class="form-horizontal" method="POST" action="{{ route('login.verify') }}">
+@extends('layout.app')
+
+@section('content')
+  <form class="form-horizontal" method="POST" action="{{ route('login.verify') }}">
     {{ csrf_field() }}
 
     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -46,4 +49,6 @@
             </button>
         </div>
     </div>
-    </form>
+  </form>
+@endsection
+

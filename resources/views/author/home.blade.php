@@ -1,25 +1,27 @@
-<a href="{{ route('authors.insert') }}">Create Author</a>
+@extends('layout.app')
 
-@if(isset($success))
-    <div>{{ $success }}</div>
-@endif
+@section('css')
+	<link rel="stylesheet" href="{{asset('')}}">
+@endsection
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Date Of Birth</th>
-        <th>Country</th>
-    </tr>
-    @foreach($authors as $author)
+@section('content')
+    @if(isset($success))
+        <div>{{ $success }}</div>
+    @endif
+
+    <table>
         <tr>
-            <td>{{ $author->id }}</td>
-            <td>{{ $author->name }}</td>
-            <td>{{ $author->dob }}</td>
-            <td>{{ $author->country }}</td>
-            <td><a href="{{ route('authors.edit', $author->id) }}">Update</a></td>
-            <td><a href="{{ route('authors.delete.verify', $author->id) }}">Remove</a></td>
+            <th>ID</th>
+            <th>Name</th>
         </tr>
-    @endforeach
-</table>
-{{ $authors->links() }}
+        @foreach($authors as $author)
+            <tr>
+                <td>{{ $author->id }}</td>
+                <td>{{ $author->name }}</td>
+                <td><a href="{{ route('authors.edit', $author->id) }}">Update</a></td>
+                <td><a href="{{ route('authors.delete.verify', $author->id) }}">Remove</a></td>
+            </tr>
+        @endforeach
+    </table>
+    {{ $authors->links() }}
+@endsection

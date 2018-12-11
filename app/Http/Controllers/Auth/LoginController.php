@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -45,14 +45,20 @@ class LoginController extends Controller
         ]);
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)){
 
-            $request->session()->regenerate();
-            $user = Auth::user();
-            $request->session()->put('role', $user->role);
+          $user = Auth::user();
+          $request->session()->regenerate();
+          $request->session()->put('user', $user);
 
-            return $this->authenticated($request, $this->guard()->user())
-                ?: redirect()->intended($this->redirectPath());
+          return $this->authenticated($request, $this->guard()->user())
+              ?: redirect()->intended($this->redirectPath());
 
         }
         return redirect()->back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function logout(Request $request){
+      Auth::logout();
+      $request->session()->flush();
+      return redirect(Route('books.all'));
     }
 }
