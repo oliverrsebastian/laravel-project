@@ -23,7 +23,7 @@ class CreateBooksTable extends Migration
             $table->integer('price');
             $table->string('description');
             $table->integer('stock');
-            $table->string('image');
+            $table->string('image')->default("NULL.jpg");
             $table->rememberToken();
             $table->timestamps();
         });

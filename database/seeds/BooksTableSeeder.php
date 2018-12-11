@@ -19,7 +19,7 @@ class BooksTableSeeder extends Seeder
             'price' => 150000,
             'description' => 'Hansel and Gretel" is a well-known fairy tale of German origin, recorded by the Brothers Grimm and published in 1812.',
             'stock' => 3,
-            'image' => 'hansel_and_gretel.jpg'
+            'image' => 'hansel_and_gretel.jpeg'
         ]);
 
         factory(Book::class)->create([
@@ -48,8 +48,7 @@ class BooksTableSeeder extends Seeder
             "author" => "Darren C",
             "price" => 100000,
             "description" => "Menunggu fajar matahri",
-            "stock" => 5,
-            "image" => "null"
+            "stock" => 5
         ]);
 
 
@@ -59,8 +58,7 @@ class BooksTableSeeder extends Seeder
             "author" => "Jefri R",
             "price" => 200000,
             "stock" => 2,
-            "description" => "Mendalami bunga matahari",
-            "image" => "null"
+            "description" => "Mendalami bunga matahari"
         ]);
 
         factory(Book::class)->create([
@@ -69,8 +67,7 @@ class BooksTableSeeder extends Seeder
             "author" => "Darez A",
             "price" => 50000,
             "stock" => 10,
-            "description" => "Seorang wanita menyamar sebagai pria",
-            "image" => "null"
+            "description" => "Seorang wanita menyamar sebagai pria"
         ]);
 
         factory(Book::class)->create([
@@ -79,8 +76,7 @@ class BooksTableSeeder extends Seeder
             "author" => "Jefri R",
             "price" => 20000,
             "stock" => 3,
-            "description" => "Menangkap hantu yang kesepian",
-            "image" => "null"
+            "description" => "Menangkap hantu yang kesepian"
         ]);
 
     }

@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layout.app')
+
 @section('content')
   <form class="form-horizontal" method="POST" action="{{ route('register.verify') }}">
     {{ csrf_field() }}

@@ -11,18 +11,18 @@ class AuthorController extends Controller
     public function index()
     {
         $authors = Author::paginate(8);
-        return view('authors', compact('authors'));
+        return view('author.home', compact('authors'));
     }
 
     public function insert()
     {
-        return view('insertAuthor');
+        return view('author.insert');
     }
 
     public function edit($id)
     {
         $author = Author::find($id);
-        return view('editAuthor', compact('author'));
+        return view('author.edit', compact('author'));
     }
 
     public function delete($id)
@@ -44,7 +44,7 @@ class AuthorController extends Controller
         $author = Author::find($id);
         $this->saveAuthorData($author, $request);
 
-        return view('authors')->with('success', 'Author has been edited');
+        return view('author.home')->with('success', 'Author has been edited');
     }
 
     private function getValidationRules(): array
@@ -77,6 +77,6 @@ class AuthorController extends Controller
         $author = new Author();
         $this->saveAuthorData($author, $request);
 
-        return view('authors')->with('success', 'Author has been added');
+        return view('author.home')->with('success', 'Author has been added');
     }
 }

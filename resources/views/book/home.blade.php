@@ -1,7 +1,10 @@
-@extends('layouts.app')
+@extends('layout.app')
+
+@section('css')
+  <link rel="stylesheet" type="text/css" href="{{asset('css/book.home.css')}}">
+@endsection
 
 @section('content')
-  {{-- <a href="{{ route('books.insert') }}">Create Book</a> --}}
 
   @if(isset($success))
   <div>{{ $success }}</div>
@@ -17,24 +20,42 @@
         <th>Description</th>
         <th>Stock</th>
         <th>Image</th>
-        <th>Rating</th>
-        <th>Show</th>
-        <th>Edit</th>
+        @if(Session::has('user'))
+        @if(Session::get('user')->role == 1)
+        <th></th>
+        @endif
+        @endif
       </tr>
     </thead>
     <tbody>
       @foreach($books as $book)
         <tr>
-          <td>{{ $book->name }}</td>
-          <td>{{ $book->genre }}</td>
-          <td>{{ $book->author }}</td>
-          <td>{{ $book->price }}</td>
-          <td>{{ $book->description }}</td>
-          <td>{{ $book->stock }}</td>
-          <td>{{ $book->image }}</td>
-          <td>{{ $book->rating }}0</td>
-          <td><a href="{{ route('books.detail', $book->id) }}">Show</a></td>
-          <td><a href="{{ route('books.edit', $book->id) }}">Edit</a></td>
+          <td rowspan="3">{{ $book->name }}</td>
+          <td rowspan="3">{{ $book->genre }}</td>
+          <td rowspan="3">{{ $book->author }}</td>
+          <td rowspan="3">{{ $book->price }}</td>
+          <td rowspan="3">{{ $book->description }}</td>
+          <td rowspan="3">{{ $book->stock }}</td>
+          <td rowspan="3">{{ $book->image }}</td>
+          @if(Session::has('user'))
+          @if(Session::get('user')->role == 1)
+          <td align="center"><a href="{{ route('books.detail', $book->id) }}">Show</a></td>
+          @endif
+          @endif
+        </tr>
+        <tr>
+          @if(Session::has('user'))
+          @if(Session::get('user')->role == 1)
+          <td align="center"><a href="{{ route('books.edit', $book->id) }}">Edit</a></td>
+          @endif
+          @endif
+        </tr>
+        <tr>
+          @if(Session::has('user'))
+          @if(Session::get('user')->role == 1)
+          <td align="center"><a href="{{ route('books.delete.verify', $book->id) }}">Delete</a></td>
+          @endif
+          @endif
         </tr>
       @endforeach
     </tbody>

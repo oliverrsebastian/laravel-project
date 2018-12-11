@@ -27,16 +27,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function hasAccess($page){
-        // dd($this->role);
+    public function hasRole($role){
         // $user_role = User::roleToString($this->role);
+        // dd($role);
         switch($this->role){
-            case 0:
-                return $this->role == $page->member;
-            case 1:
-                return $this->role == $page->admin;
-            default:
-                return 1 == $page->guest;
+            case -1: return "guest" == $role;
+            case 0: return "member" == $role;
+            case 1: return "admin" == $role;
+            default: return false;
         }
     }
 }
