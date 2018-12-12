@@ -21,13 +21,14 @@
     </tr>
 </table>
 
-<form action="" method="GET">
-    <input type="hidden" value="{{$book->id}}">
+<form action="{{route('cart.insert.verify')}}" method="POST">
+    {{ @csrf_field() }}
+    <input type="hidden" value="{{$book ->id}}" id="bookId" name="bookId">
     <div>
         <label for="qty">Qty : </label>
         <input type="number" name="qty" id="qty">
     </div>
     <div>
-        <button type="submit">Add to Cart</button>
+        <input type="submit" value="Add to Cart" class="btn btn-primary">
     </div>
 </form>

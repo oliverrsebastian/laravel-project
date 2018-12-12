@@ -21,8 +21,16 @@ Route::get('/logout', 'Auth\LoginController@logout')
 /*-------------Cart----------------*/
 Route::get('/cart', 'CartController@index')
 			->name('cart')
-			->middleware('auth.role:member');
-Route::get('/cart/insert', 'CartController@insert')->name('cart.insert')->middleware('auth.role:member');
+    ->middleware('auth.role:member, admin');
+Route::get('/cart/insert/{id}', 'CartController@insert')->name('cart.insert')->middleware('auth.role:member');
+Route::post('/cart/insert', 'CartController@save')->name('cart.insert.verify')->middleware('auth.role:member');
+/*---------------------------------*/
+
+/*-------------Transaction----------------*/
+Route::get('/transactions', 'TransactionController@index')
+    ->name('transactions')
+    ->middleware('auth.role:member, admin');
+Route::get('/transaction/insert', 'TransactionController@save')->name('transaction.insert')->middleware('auth.role:member');
 /*---------------------------------*/
 
 

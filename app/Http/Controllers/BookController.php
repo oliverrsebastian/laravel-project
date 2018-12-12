@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Gate;
-use Validator;
-use Storage;
-use Illuminate\Http\Request;
 use App\Author;
 use App\Book;
 use App\BookRating;
 use App\Genre;
 use App\Page;
 use App\Rules\NumberMinimumRule;
+use Auth;
+use Gate;
+use Illuminate\Http\Request;
+use Storage;
+use Validator;
 
 class BookController extends Controller
 {
@@ -24,6 +24,11 @@ class BookController extends Controller
     public function index(){
         $books = Book::paginate(8);
         return view('book.home', compact('books'));
+    }
+
+    public function findById($bookId)
+    {
+        return Book::where('id', $bookId)->first();
     }
 
     public function insert()

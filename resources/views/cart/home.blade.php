@@ -6,7 +6,7 @@
     <tr>
         <th>Name</th>
         <th>Image</th>
-        <th>Pirce</th>
+        <th>Price</th>
         <th>Qty</th>
     </tr>
     @php $totalPrice = 0;@endphp
