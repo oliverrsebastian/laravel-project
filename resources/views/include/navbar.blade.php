@@ -58,6 +58,9 @@
             @endif
           </ul>
         </li>
+        <li class="nav-item" style="pointer-events: none;">
+          <a href="#" class="nav-link disabled" id="serverTime"></a>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
