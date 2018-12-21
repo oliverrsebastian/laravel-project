@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
@@ -39,6 +40,20 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
+        $credentials = [
+          'email' => $request->email,
+          'password' => $request->password
+        ];
+
+        if($request->remember) {
+            Cookie::queue('credentials', $credentials, 60);
+        }
+
+//        if(Auth::attempt($credentials)) {
+//            return redirect()->back();
+//        }
+//        return fail;
+        
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required|min:6'
