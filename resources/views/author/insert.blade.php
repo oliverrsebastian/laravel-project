@@ -17,6 +17,17 @@
 		  </div>
 
 	    <div class="form-group">
+		    <label for="">Author DOB</label>
+		    <input type="text" name="dob" class="form-control" placeholder="mm/dd/yyyy">
+		  </div>
+
+	    <div class="form-group">
+		    <label for="">Author Nationality</label>
+		    <input type="text" name="country" class="form-control">
+		  </div>
+
+
+	    <div class="form-group">
 	    	<input type="submit" value="Insert Author" class="btn btn-primary">
 		  </div>
 	</form>

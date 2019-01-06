@@ -32,7 +32,7 @@ class AuthorController extends Controller
         return redirect()->back()->with('success', 'Author has been deleted');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $rules = $this->getValidationRules();
 
@@ -41,17 +41,18 @@ class AuthorController extends Controller
         if ($validator->fails())
             return redirect()->back()->withErrors($validator->errors());
 
-        $author = Author::find($id);
+        $author_id = $request->id;
+        $author = Author::find($author_id);
         $this->saveAuthorData($author, $request);
 
-        return view('author.home')->with('success', 'Author has been edited');
+        return redirect(route('authors.all'))->with('success', 'Author has been edited');
     }
 
     private function getValidationRules(): array
     {
         $rules = [
-            'name' => 'required | unique | min:5',
-            'dob' => 'required | date',
+            'name' => 'required | unique:authors| min:5',
+            'dob' => 'required | date_format:d/m/Y',
             'country' => 'required'
         ];
         return $rules;
@@ -77,6 +78,6 @@ class AuthorController extends Controller
         $author = new Author();
         $this->saveAuthorData($author, $request);
 
-        return view('author.home')->with('success', 'Author has been added');
+        return redirect(route('authors.all'))->with('success', 'Author has been added');
     }
 }

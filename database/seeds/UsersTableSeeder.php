@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
         factory(User::class)->create([
           'name' => 'Ricky Marten',
           'email' => 'ricky@mail.com',
-          'password' => Hash::make('ricky'),
+          'password' => Hash::make('rickymarten'),
           'role' => 0
         ]);
         factory(User::class)->create([

@@ -54,6 +54,10 @@ class BookController extends Controller
         ];
         return view('book.detail')->with('book', $book);
     }
+    public function getBook($id){
+        $get_book = Book::find($id);
+        return $get_book;
+    }
 
     public function edit($id)
     {
@@ -115,8 +119,9 @@ class BookController extends Controller
     public function delete($id)
     {
         $book = Book::find($id);
+        echo($id);
         $book->delete();
-        return view('book')->with('success', 'Book has been deleted');
+        return redirect(route('books.all'))->with('success', 'Book has been deleted');
     }
 
     public function reduceQty($bookId, $qty)

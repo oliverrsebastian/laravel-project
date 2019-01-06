@@ -20,17 +20,23 @@ Route::get('/logout', 'Auth\LoginController@logout')
 
 /*-------------Cart----------------*/
 Route::get('/cart', 'CartController@index')
-			->name('cart')
+		->name('cart')
     ->middleware('auth.role:member,admin');
-Route::get('/cart/insert/{id}', 'CartController@insert')->name('cart.insert')->middleware('auth.role:member');
-Route::post('/cart/insert', 'CartController@save')->name('cart.insert.verify')->middleware('auth.role:member');
-Route::get('/cart/delete/{id}', 'CartController@delete')->name('cart.delete')->middleware('auth.role:member');
+Route::get('/cart/insert/{id}', 'CartController@insert')
+		->name('cart.insert')
+		->middleware('auth.role:member');
+Route::post('/cart/insert', 'CartController@save')
+		->name('cart.insert.verify')
+		->middleware('auth.role:member');
+Route::get('/cart/delete/{id}', 'CartController@delete')
+		->name('cart.delete')
+		->middleware('auth.role:member');
 /*---------------------------------*/
 
 /*-------------Transaction----------------*/
 Route::get('/transactions', 'TransactionController@index')
-    ->name('transactions')
-    ->middleware('auth.role:member, admin');
+    ->name('transactions.all')
+    ->middleware('auth.role:member,admin');
 Route::get('/transaction/insert', 'TransactionController@save')->name('transaction.insert')->middleware('auth.role:member');
 /*---------------------------------*/
 
@@ -74,7 +80,7 @@ Route::post('/books/insert', 'BookController@store')
 Route::post('/books/edit', 'BookController@update')
 			->name('books.edit.verify')
 			->middleware('auth.role:admin');
-Route::delete('/books/delete/{id}', 'BookController@delete')
+Route::get('/books/delete/{id}', 'BookController@delete')
 			->name('books.delete.verify')
 			->middleware('auth.role:admin');
 /*-----------------------------------------*/
@@ -97,7 +103,7 @@ Route::post('/genres/insert', 'GenreController@store')
 Route::post('/genres/edit', 'GenreController@update')
 			->name('genres.edit.verify')
 			->middleware('auth.role:admin');
-Route::delete('/genres/delete/{id}', 'GenreController@delete')
+Route::get('/genres/delete/{id}', 'GenreController@delete')
 			->name('genres.delete.verify')
 			->middleware('auth.role:admin');
 /*------------------------------------------*/
@@ -121,8 +127,22 @@ Route::post('/authors/insert', 'AuthorController@store')
 Route::post('/authors/edit', 'AuthorController@update')
 			->name('authors.edit.verify')
 			->middleware('auth.role:admin');
-Route::delete('/authors/delete/{id}', 'AuthorController@delete')
+Route::get('/authors/delete/{id}', 'AuthorController@delete')
 			->name('authors.delete.verify')
 			->middleware('auth.role:admin');
 /*-------------------------------------------*/
 
+
+
+/*---------------User Forms----------------*/
+Route::get('/profile', 'UserController@index')
+			->name('users.profile')
+			->middleware('auth.role:admin,member');
+Route::get('users', 'UserController@manageUser')
+			->name('users.all')
+			->middleware('auth.role:admin');
+/*-----------------------------------------*/
+
+/*---------------User Action----------------*/
+
+/*------------------------------------------*/

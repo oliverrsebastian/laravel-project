@@ -17,9 +17,9 @@ class CreateBooksTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('genre');
-            $table->foreign('genre')->references('name')->on('genres');
+            $table->foreign('genre')->references('name')->on('genres')->onUpdate('cascade')->onDelete('cascade');
             $table->string('author');
-            $table->foreign('author')->references('name')->on('authors');
+            $table->foreign('author')->references('name')->on('authors')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('price');
             $table->string('description');
             $table->integer('stock');

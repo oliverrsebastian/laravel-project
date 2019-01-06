@@ -18,7 +18,7 @@ class CreateCartTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('book_id')->references('id')->on('books')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('transaction_id')->nullable()->default(null);
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
             $table->integer('qty');

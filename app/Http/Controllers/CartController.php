@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -17,7 +18,7 @@ class CartController extends Controller
     {
         $bookController = new BookController();
         $book = $bookController->findById($bookId);
-        return view('cart.book-cart-detail', compact('book'));
+        return view('cart.insert', compact('book'));
     }
 
     public function save(Request $request)
@@ -29,8 +30,12 @@ class CartController extends Controller
         $cart->qty = $request->qty;
         $cart->user_id = Auth::user()->id;
         $cart->price = ($cart->qty * $book->price);
+
+        if($cart->qty < 0)
+            return redirect(route('cart'))->with('error', 'Cart cannot be < 0');
+
         $cart->save();
-        return $this->index();
+        return redirect(route('cart'))->with('success', 'Add to cart success!');
     }
 
     public function findAll($transactionId)
@@ -44,9 +49,11 @@ class CartController extends Controller
         $carts = Cart::where('transaction_id', null)->get();
         $bookController = new BookController();
         foreach ($carts as $cart) {
-            $cart->transaction_id = $transactionId;
-            $bookController->reduceQty($cart->book_id, $cart->qty);
-            $cart->save();
+            if($cart->user_id == Session::get('user')->id){
+                $cart->transaction_id = $transactionId;
+                $bookController->reduceQty($cart->book_id, $cart->qty);
+                $cart->save();
+            }
         }
     }
 

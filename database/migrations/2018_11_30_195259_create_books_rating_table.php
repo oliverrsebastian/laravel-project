@@ -16,7 +16,7 @@ class CreateBooksRatingTable extends Migration
         Schema::create('books_rating', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->float('rating');

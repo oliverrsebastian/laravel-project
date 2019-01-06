@@ -25,9 +25,9 @@
             <li><a href="{{ route('genres.all') }}">Genres</a></li>
             <li><a href="{{ route('authors.all') }}">Authors</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Users</a></li>
+            <li><a href="{{ route('users.all') }}">Users</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Transaction History</a></li>
+            <li><a href="{{ route('transactions.all') }}">Transaction History</a></li>
           </ul>
         </li>
         @endif
@@ -46,6 +46,7 @@
             <li><a href="{{ route('login') }}">Login</a></li>
             <li><a href="{{ route('register') }}">Register</a></li>
             @elseif(Session::has('user'))
+            <li><a href="{{ route('users.profile') }}">Profile</a></li>
             <li><a href="{{ route('logout') }}">Logout</a></li>
             @endif
             @if(Session::has('user'))

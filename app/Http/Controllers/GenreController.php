@@ -25,7 +25,7 @@ class GenreController extends Controller
         return view('genre.edit', compact('genre'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $rules = $this->getValidationRules();
 
@@ -34,10 +34,11 @@ class GenreController extends Controller
         if ($validator->fails())
             return redirect()->back()->withErrors($validator->errors());
 
-        $genre = Genre::find($id);
+        $genre_id = $request->id;
+        $genre = Genre::find($genre_id);
         $this->saveGenre($genre, $request);
 
-        return view('genre.home')->with('success', 'Genre has been edited');
+        return redirect(route('genres.all'))->with('success', 'Genre has been edited');
     }
 
     /**
@@ -46,7 +47,7 @@ class GenreController extends Controller
     private function getValidationRules(): array
     {
         $rules = [
-            'name' => 'required | unique | min:5'
+            'name' => 'required |unique:genres| min:5'
         ];
         return $rules;
     }
@@ -79,6 +80,6 @@ class GenreController extends Controller
         $genre = new Genre();
         $this->saveGenre($genre, $request);
 
-        return view('genre.home')->with('success', 'Genre has been added');
+        return redirect(route('genres.all'))->with('success', 'Genre has been added');
     }
 }

@@ -5,9 +5,6 @@
 @endsection
 
 @section('content')
-    @if(isset($success))
-        <div>{{ $success }}</div>
-    @endif
 
     <table>
         <tr>
