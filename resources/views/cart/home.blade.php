@@ -21,6 +21,7 @@
             <td>{{ $book->image }}</td>
             <td>{{ $cart->price }}</td>
             <td>{{ $cart->qty }}</td>
+            <td><a href="{{route('cart.delete', $cart->id)}}">Delete</a></td>
         </tr>
     @endforeach
     <td colspan="10">{{$totalPrice}}</td>

@@ -13,6 +13,7 @@ class TransactionTableSeeder extends Seeder
     public function run()
     {
         factory(Transaction::class)->create([
+            "user_id" => 1,
             "transactionDate" => "2018 June 06"
         ]);
     }

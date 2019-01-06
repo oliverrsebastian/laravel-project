@@ -119,6 +119,14 @@ class BookController extends Controller
         return view('book')->with('success', 'Book has been deleted');
     }
 
+    public function reduceQty($bookId, $qty)
+    {
+        $book = Book::find($bookId);
+        echo $qty;
+        $book->stock = $book->stock - $qty;
+        $book->save();
+    }
+
     public function store(Request $request)
     {
         $rules = $this->getValidationRule();

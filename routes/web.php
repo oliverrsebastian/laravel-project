@@ -24,6 +24,7 @@ Route::get('/cart', 'CartController@index')
     ->middleware('auth.role:member,admin');
 Route::get('/cart/insert/{id}', 'CartController@insert')->name('cart.insert')->middleware('auth.role:member');
 Route::post('/cart/insert', 'CartController@save')->name('cart.insert.verify')->middleware('auth.role:member');
+Route::get('/cart/delete/{id}', 'CartController@delete')->name('cart.delete')->middleware('auth.role:member');
 /*---------------------------------*/
 
 /*-------------Transaction----------------*/
@@ -83,8 +84,7 @@ Route::delete('/books/delete/{id}', 'BookController@delete')
 Route::get('/genres', 'GenreController@index')
 			->name('genres.all')
 			->middleware('auth.role:admin');
-Route::get('/genres/insert', 'GenreController@insert')
-			->name('genres.insert')
+Route::get('/genres/insert', 'GenreController@insert')->name('genres.insert')
 			->middleware('auth.role:admin');
 Route::get('/genres/edit/{id}', 'GenreController@edit')
 			->name('genres.edit')

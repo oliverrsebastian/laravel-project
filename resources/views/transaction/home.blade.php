@@ -15,7 +15,7 @@
         <tr>
             <td>{{ $transaction->id }}</td>
             <td>{{ $transaction->transactionDate }}</td>
-            <td>{{ $transaction->user }}</td>
+            <td>{{ \Illuminate\Support\Facades\Session::get('user')->id }}</td>
             <td>
         @php
             $cartController = new \App\Http\Controllers\CartController();

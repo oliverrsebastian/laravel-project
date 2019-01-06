@@ -38,7 +38,7 @@
           <td rowspan="3">{{ $book->stock }}</td>
           <td rowspan="3">{{ $book->image }}</td>
           @if(Session::has('user'))
-            <td align="center"><a href="{{ url('/cart/insert/'.$book->id) }}">Add to Cart</a></td>
+                <td align="center"><a href="{{ route('cart.insert', $book->id) }}">Add to Cart</a></td>
           @if(Session::get('user')->role == 1)
           <td align="center"><a href="{{ route('books.detail', $book->id) }}">Show</a></td>
           @endif

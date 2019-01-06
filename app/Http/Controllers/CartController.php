@@ -30,7 +30,7 @@ class CartController extends Controller
         $cart->user_id = Auth::user()->id;
         $cart->price = ($cart->qty * $book->price);
         $cart->save();
-        return route('cart');
+        return $this->index();
     }
 
     public function findAll($transactionId)
@@ -42,9 +42,18 @@ class CartController extends Controller
     public function checkout($transactionId)
     {
         $carts = Cart::where('transaction_id', null)->get();
+        $bookController = new BookController();
         foreach ($carts as $cart) {
             $cart->transaction_id = $transactionId;
+            $bookController->reduceQty($cart->book_id, $cart->qty);
             $cart->save();
         }
+    }
+
+    public function delete($id)
+    {
+        $cart = Cart::find($id);
+        $cart->delete();
+        return $this->index();
     }
 }
