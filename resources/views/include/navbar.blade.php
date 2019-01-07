@@ -35,7 +35,11 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        @if(Session::has('user'))
+        @if(Session::get('user')->role == 0)
         <li><a href="{{ route('cart') }}">Cart</a></li>
+        @endif
+        @endif
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, 
             {{ (Auth::check() == null) ? "Guest" : Auth::user()->name }} 

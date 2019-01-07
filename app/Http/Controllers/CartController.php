@@ -18,6 +18,8 @@ class CartController extends Controller
     {
         $bookController = new BookController();
         $book = $bookController->findById($bookId);
+        if($book->stock < 0)
+            return redirect(route('books.all'))->with('error', 'Stock Abis');
         return view('cart.insert', compact('book'));
     }
 
@@ -31,8 +33,8 @@ class CartController extends Controller
         $cart->user_id = Auth::user()->id;
         $cart->price = ($cart->qty * $book->price);
 
-        if($cart->qty < 0)
-            return redirect(route('cart'))->with('error', 'Cart cannot be < 0');
+        if($book->stock - $cart->qty < 0)
+            return redirect()->back()->with('error', 'Stock tidak mencukupi');
 
         $cart->save();
         return redirect(route('cart'))->with('success', 'Add to cart success!');
