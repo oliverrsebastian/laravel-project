@@ -10,6 +10,12 @@
   <div>{{ $success }}</div>
   @endif
 
+  <form action="" method="GET">
+    <label>Search : </label>
+    <input type="text" name="book_name">
+    <button type="submit">Search</button>
+  </form>
+
   <table>
     <thead>
       <tr>

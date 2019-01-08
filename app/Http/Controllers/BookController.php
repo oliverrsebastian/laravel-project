@@ -21,8 +21,13 @@ class BookController extends Controller
 		// $this->middleware();
 	}
 
-    public function index(){
-        $books = Book::paginate(8);
+    public function index(Request $request)
+    {
+        $name = $request->book_name;
+        if ($name)
+            $books = Book::where('name', 'LIKE', "%" . $name . "%")->paginate(8);
+        else
+            $books = Book::paginate(8);
         return view('book.home', compact('books'));
     }
 
@@ -43,6 +48,7 @@ class BookController extends Controller
         $get_book = Book::find($id);
         $bookRating = new BookRating();
         $book = [
+            'id' => $get_book->id,
             'name' => $get_book->name,
             'genre' => $get_book->genre,
             'author' => $get_book->author,
