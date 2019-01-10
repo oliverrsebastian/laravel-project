@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\BookRating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Auth;
 
 class BookRatingController extends Controller
 {

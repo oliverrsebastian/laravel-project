@@ -17,9 +17,9 @@ use Validator;
 class BookController extends Controller
 {
 
-	public function __construct(){
-		// $this->middleware();
-	}
+    public function __construct(){
+      // $this->middleware();
+    }
     public function index(Request $request)
     {
         $name = $request->book_name;

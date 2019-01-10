@@ -62,7 +62,7 @@ Route::post('/register', 'Auth\RegisterController@register')
 
 
 /*-------------Book Forms------------------*/
-Route::get('/', 'BookController@index')
+Route::get('/{name?}', 'BookController@index')
 			->name('books.all');
 Route::get('/books/insert', 'BookController@insert')
 			->name('books.insert')
@@ -72,6 +72,8 @@ Route::get('/books/edit/{id}', 'BookController@edit')
 			->middleware('auth.role:admin');
 Route::get('/books/{id}', 'BookController@show')
 			->name('books.detail');
+Route::post('books/rating', 'BookRatingController@store')
+    ->name('rating.insert');
 /*-----------------------------------------*/
 /*-------------Book Actions----------------*/
 Route::post('/books/insert', 'BookController@store')
