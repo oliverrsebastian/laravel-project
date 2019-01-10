@@ -21,7 +21,7 @@ Route::get('/logout', 'Auth\LoginController@logout')
 /*-------------Cart----------------*/
 Route::get('/cart', 'CartController@index')
 		->name('cart')
-    ->middleware('auth.role:member,admin');
+    ->middleware('auth.role:member');
 Route::get('/cart/insert/{id}', 'CartController@insert')
 		->name('cart.insert')
 		->middleware('auth.role:member');

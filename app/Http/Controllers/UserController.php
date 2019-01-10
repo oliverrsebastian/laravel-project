@@ -38,8 +38,8 @@ class UserController extends Controller
     {
         $rules = [
             'name' => 'min:5 | max:50 | required',
-            'email' => 'required | email',
-            'phone' => 'numeric | required',
+            'email' => 'required | email | unique:users',
+            'phone' => 'digits:12 | required',
             'address' => 'min:10 | required',
             'picture' => 'mimes:jpeg,jpg,png | required',
         ];
