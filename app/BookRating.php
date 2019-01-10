@@ -21,4 +21,8 @@ class BookRating extends Model
         ];
         return $ratings;
     }
+
+    public function isAbleToRate($book_id, $user_id){
+        return BookRating::where('book_id', $book_id)->where('user_id', $user_id)->count();
+    }
 }

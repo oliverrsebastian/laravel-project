@@ -86,6 +86,16 @@ Route::get('/books/delete/{id}', 'BookController@delete')
 /*-----------------------------------------*/
 
 
+/*-------------Rating Forms------------------*/
+
+/*-----------------------------------------*/
+/*-------------Rating Actions----------------*/
+Route::post('/books/edit/{id}/ratings/insert', 'BookRatingController@store')
+			->name('ratings.insert.verify')
+			->middleware('auth.role:member');
+/*-----------------------------------------*/
+
+
 /*--------------Genre Forms-----------------*/
 Route::get('/genres', 'GenreController@index')
 			->name('genres.all')
@@ -138,11 +148,19 @@ Route::get('/authors/delete/{id}', 'AuthorController@delete')
 Route::get('/profile', 'UserController@index')
 			->name('users.profile')
 			->middleware('auth.role:admin,member');
-Route::get('users', 'UserController@manageUser')
+Route::get('/users', 'UserController@manageUser')
 			->name('users.all')
+			->middleware('auth.role:admin');
+Route::get('/users/edit/{id}', 'UserController@edit')
+			->name('users.edit')
 			->middleware('auth.role:admin');
 /*-----------------------------------------*/
 
 /*---------------User Action----------------*/
-
+Route::post('/users/edit', 'UserController@update')
+			->name('users.edit.verify')
+			->middleware('auth.role:admin');
+Route::get('/users/delete/{id}', 'UserController@delete')
+			->name('users.delete.verify')
+			->middleware('auth.role:admin');
 /*------------------------------------------*/

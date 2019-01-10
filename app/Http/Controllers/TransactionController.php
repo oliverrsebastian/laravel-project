@@ -11,7 +11,10 @@ class TransactionController extends Controller
     public function index()
     {
         $cartController = new CartController();
-        $transactions = Transaction::where('user_id', Auth::user()->id)->get();
+        if(Auth::user()->role == 1)
+            $transactions = Transaction::all();
+        else
+            $transactions = Transaction::where('user_id', Auth::user()->id)->get();
         return view('transaction.home', compact('transactions'));
     }
 
