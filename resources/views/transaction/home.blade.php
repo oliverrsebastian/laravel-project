@@ -11,6 +11,9 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-sm-12">
+                @if(count($transactions) == 0)
+                    <h2>There are no transactions here!</h2>
+                @else
                     @foreach($transactions as $transaction)
                     <div class="card mb-3">
                         <div class="card-body">
@@ -77,6 +80,7 @@
                         </div>
                     </div>
                     @endforeach
+                @endif
             </div>
         </div>
     </div>

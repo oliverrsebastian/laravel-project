@@ -48,19 +48,5 @@
 				</div>
 			</div>
 		</div>
-		<div class="s2">
-			<img src="{{ asset('storage/'.$book['image']) }}">
-		</div>
-
-		<div>
-			<form action="{{route('rating.insert')}}" method="POST">
-				{{ csrf_field() }}
-				<input type="hidden" name="book_id" value="{{$book['id']}}">
-				<label for="rating">Rating : </label>
-				<input type="text" name="rating">
-				<button type="submit">Rate</button>
-			</form>
-		</div>
-	</div>
 	
 @endsection

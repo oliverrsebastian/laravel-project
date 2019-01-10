@@ -8,6 +8,9 @@
 @section('content')
 
     <div class="container mt-5">
+        @if(count($carts) == 0)
+            <h2>There is nothing on cart right now!</h2>
+        @else
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -53,6 +56,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     {{-- <table>
         <tr>

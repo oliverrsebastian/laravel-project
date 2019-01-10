@@ -21,7 +21,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'phone' => str_random(10),
         'gender' => str_random(10),
         'address' => str_random(10),
-        'picture' => str_random(10),
         'remember_token' => str_random(10),
     ];
 });

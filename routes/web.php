@@ -60,49 +60,12 @@ Route::post('/register', 'Auth\RegisterController@register')
 			->name('register.verify');
 /*--------------------------------------------*/
 
-
-/*-------------Book Forms------------------*/
-Route::get('/{name?}', 'BookController@index')
-			->name('books.all');
-Route::get('/books/insert', 'BookController@insert')
-			->name('books.insert')
-			->middleware('auth.role:admin');
-Route::get('/books/edit/{id}', 'BookController@edit')
-			->name('books.edit')
-			->middleware('auth.role:admin');
-Route::get('/books/{id}', 'BookController@show')
-			->name('books.detail');
-Route::post('books/rating', 'BookRatingController@store')
-    ->name('rating.insert');
-/*-----------------------------------------*/
-/*-------------Book Actions----------------*/
-Route::post('/books/insert', 'BookController@store')
-			->name('books.insert.verify')
-			->middleware('auth.role:admin');
-Route::post('/books/edit', 'BookController@update')
-			->name('books.edit.verify')
-			->middleware('auth.role:admin');
-Route::get('/books/delete/{id}', 'BookController@delete')
-			->name('books.delete.verify')
-			->middleware('auth.role:admin');
-/*-----------------------------------------*/
-
-
-/*-------------Rating Forms------------------*/
-
-/*-----------------------------------------*/
-/*-------------Rating Actions----------------*/
-Route::post('/books/edit/{id}/ratings/insert', 'BookRatingController@store')
-			->name('ratings.insert.verify')
-			->middleware('auth.role:member');
-/*-----------------------------------------*/
-
-
 /*--------------Genre Forms-----------------*/
 Route::get('/genres', 'GenreController@index')
 			->name('genres.all')
 			->middleware('auth.role:admin');
-Route::get('/genres/insert', 'GenreController@insert')->name('genres.insert')
+Route::get('/genres/insert', 'GenreController@insert')
+			->name('genres.insert')
 			->middleware('auth.role:admin');
 Route::get('/genres/edit/{id}', 'GenreController@edit')
 			->name('genres.edit')
@@ -119,6 +82,16 @@ Route::get('/genres/delete/{id}', 'GenreController@delete')
 			->name('genres.delete.verify')
 			->middleware('auth.role:admin');
 /*------------------------------------------*/
+
+
+/*-------------Rating Forms------------------*/
+
+/*-----------------------------------------*/
+/*-------------Rating Actions----------------*/
+Route::post('/books/edit/{id}/ratings/insert', 'BookRatingController@store')
+			->name('ratings.insert.verify')
+			->middleware('auth.role:member');
+/*-----------------------------------------*/
 
 
 /*---------------Author Forms----------------*/
@@ -166,3 +139,29 @@ Route::get('/users/delete/{id}', 'UserController@delete')
 			->name('users.delete.verify')
 			->middleware('auth.role:admin');
 /*------------------------------------------*/
+
+/*-------------Book Forms------------------*/
+Route::get('/{name?}', 'BookController@index')
+			->name('books.all');
+Route::get('/books/insert', 'BookController@insert')
+			->name('books.insert')
+			->middleware('auth.role:admin');
+Route::get('/books/edit/{id}', 'BookController@edit')
+			->name('books.edit')
+			->middleware('auth.role:admin');
+Route::get('/books/{id}', 'BookController@show')
+			->name('books.detail');
+Route::post('books/rating', 'BookRatingController@store')
+    ->name('rating.insert');
+/*-----------------------------------------*/
+/*-------------Book Actions----------------*/
+Route::post('/books/insert', 'BookController@store')
+			->name('books.insert.verify')
+			->middleware('auth.role:admin');
+Route::post('/books/edit', 'BookController@update')
+			->name('books.edit.verify')
+			->middleware('auth.role:admin');
+Route::get('/books/delete/{id}', 'BookController@delete')
+			->name('books.delete.verify')
+			->middleware('auth.role:admin');
+/*-----------------------------------------*/

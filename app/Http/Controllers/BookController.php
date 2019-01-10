@@ -53,7 +53,7 @@ class BookController extends Controller
             'stock' => $get_book->stock,
             'image' => $get_book->image,
             'rating' => $bookRating->getRating($id)[1] / $bookRating->getRating($id)[0],
-            'isAbleToRate' => (($bookRating->isAbleToRate($get_book->id, Auth::user()->id) > 0) ? false : true)
+            'isAbleToRate' => Auth::check() ? (($bookRating->isAbleToRate($get_book->id, Auth::user()->id) > 0) ? false : true) : false
         ];
         return view('book.detail')->with('book', $book);
     }
